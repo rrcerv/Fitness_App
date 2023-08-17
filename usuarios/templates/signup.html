@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<style>
+
+        body{
+            margin:0;
+    }
+
+        .page{
+        width: 100vw;
+        height: 100vh;
+        background-color: #1B1F27;
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
+    .content{
+        width:355px;
+        height:400px;
+        align-content:center;
+        border-radius:20px;
+        background-color: #181920;
+        outline-color: #00a5e7;
+        justify-content:center;
+        display:flex;
+        flex-direction:column;
+        opacity: 100%;
+        outline-style: solid;
+        outline-width:0px;
+        box-shadow: 12px 0 2px -11px rgba(255, 255, 255, .2);
+    }
+
+    .pagina-login{
+        display:flex;
+        justify-content:center;
+        align-content:center;
+        padding-top:20px;
+    }
+
+    input[type='text']{
+        margin-top: 25px;
+    }
+
+    input[type='submit']{
+        margin-top:20px;
+        width:30%;
+        height:40px;
+        background-color:#5568FE;
+        font-size:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:white;
+        border-radius:8px;
+        border:none;
+
+    }
+
+    form{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        width:100%;
+    }
+
+    input::placeholder{
+        color:#CBD0F7;
+    }
+
+    .title{
+        background-color:#ab6363;
+        width:40px;
+        height:40px;
+        margin-bottom:20px;
+        margin-left:157.5px;
+        border:none;
+        box-shadow: 11px 5px 0 0px rgba(0, 38, 255, .2);
+    }
+
+    input[type="text"], input[type="password"]{
+        display:block;
+        width:75%;
+        height:45px;
+        border-radius:5px;
+        margin-top:10px;
+        background-color: #252a34; 
+        color: #CBD0F7;
+        border:none;
+        outline:none;
+        padding-left:10px;
+    }
+
+    .login{
+        font-size:15px;
+        color: #CBD0F7;
+    }
+
+
+</style>
+<body>
+
+    <div class="page">
+        <div class="content">
+            <div class="error-status">
+            {% if status == '0' %}
+
+    <div class='erro_1'>Email inválido.</div>
+
+    {% endif %}
+
+    {% if status == '1' %}
+
+    <div class='erro_1'>Sua senha deve conter pelo menos 8 caracteres.</div>
+
+    {% endif %}
+
+    {% if status == '2' %}
+
+    <div class='erro_1'>Email já cadastrado.</div>
+
+    {% endif %}
+    </div>
+
+    <div class="title"></div> 
+    
+    <div class="formulario">
+    <form action="{% url 'validate_signup' %}" method="POST"> {% csrf_token %}
+        <input type="text" name="nome" class="name" placeholder="Digite seu nome">
+        <input type="text" name="email" class="email" placeholder="Digite seu email">
+        <input type="password" name="senha" class="email-senha" placeholder="Digite sua senha">
+        <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+
+        <div class="pagina-login">
+        <p class="login">Já tem uma conta? <a href="{% url 'login' %}">Faça login.</a></p>
+        </div>
+
+    </div>
+    </div>
+</body>
+</html>

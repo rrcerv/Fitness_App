@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<style>
+
+    body{
+        margin:0;
+    }
+
+    .page{
+        width: 100vw;
+        height: 100vh;
+        background-color: #1B1F27;
+        font-family: Arial, Helvetica, sans-serif;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction:column;
+    }
+
+    .content{
+        width:355px;
+        height:400px;
+        align-content:center;
+        border-radius:20px;
+        background-color: #181920;
+        outline-color: #00a5e7;
+        justify-content:center;
+        display:flex;
+        flex-direction:column;
+        opacity: 100%;
+        outline-style: solid;
+        outline-width:0px;
+        box-shadow: 12px 0 2px -11px rgba(255, 255, 255, .2);
+    }
+
+    .title{
+        display:flex;
+        justify-content:center;
+        align-content:center;
+    }
+
+    .formulario{
+        display:flex;
+        justify-content:center;
+        align-content:center;
+    }
+
+    .pagina-cadastro{
+        display:flex;
+        justify-content:center;
+        align-content:center;
+        padding-top:20px;
+    }
+
+    input[type="text"], input[type="password"]{
+        display:block;
+        width:75%;
+        height:45px;
+        border-radius:5px;
+        margin-top:10px;
+        background-color: #252a34; 
+        color: #CBD0F7;
+        border:none;
+        outline:none;
+        padding-left:10px;
+    }
+
+    input[type='text']{
+        margin-top: 25px;
+    }
+
+    input[type='submit']{
+        margin-top:20px;
+        width:30%;
+        height:40px;
+        background-color:#5568FE;
+        font-size:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:white;
+        border-radius:8px;
+        border:none;
+
+    }
+
+    input::placeholder{
+        color:#CBD0F7;
+    }
+
+    form{
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        width:100%;
+    }
+
+    .title{
+        background-color:#ab6363;
+        width:40px;
+        height:40px;
+        margin-bottom:20px;
+        margin-left:157.5px;
+        border:none;
+        box-shadow: 11px 5px 0 0px rgba(0, 38, 255, .2);
+    }
+
+    .cadastrar{
+        font-size:15px;
+        color: #CBD0F7;
+    }
+
+    .error-status{
+        background-color:#ab6363;
+        opacity:95%;
+        margin-bottom:20px;
+        box-shadow: 3px 1px 0 0px rgba(0, 38, 255, .2);
+    }
+
+
+</style>
+
+<body>
+    <div class="page">
+        
+        <div class="error-status-whole">
+            {% if status == '0' %}
+                <div class="error-status"> Email ou senha incorretos</div>
+            {% endif %}
+        
+            {% if status == '1' %}
+                <div class="error-status"> Email não cadastrado.</div>
+            {% endif %}
+        
+            {% if status == '2' %}
+                <div class="error-status"> Faça login para entrar no sistema.</div>
+            {% endif %}
+        
+            </div>
+        
+        <div class="content">
+    <div class="title"></div>
+    
+    <div class="formulario">
+    <form action="{% url 'validate_login' %}" method="POST"> {% csrf_token %}
+        <input type='text' name='email' class="email" placeholder='Digite seu email'>
+        <input type="password" name='senha' class="email-senha" placeholder="Digite sua senha">
+        <input type="Submit" value="ENTRAR">
+
+    </form>
+    </div>
+    
+    <div class="pagina-cadastro">
+    
+    <p class="cadastrar">Ainda não tem uma conta? <a href="{% url 'signup' %}">Cadastre-se.</a></p>
+    <!-- <button type="submit">Página de cadastro</button> !-->
+    </form>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

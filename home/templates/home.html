@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    .page{
+        width: 100vw;
+        height: 100vh;
+        background-color: #1B1F27;
+        font-family: Arial, Helvetica, sans-serif;
+        display:flex;
+    }
+
+    .page-esquerda{
+        height:100%;
+        width:50%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction:column;
+    }
+
+    .page-direita{
+        height:100%;
+        width:50%;
+        display:flex;
+        /*justify-content:center;*/
+        align-items:center;
+        flex-direction:column;
+    }
+
+    .treino{
+        width:500px;
+        height:500px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .linha{
+        width:100%;
+        height:25%;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:center;
+        text-align:center;
+        color: #CBD0F7;
+    }
+
+    .celula{
+        height:100%;
+        width:100%;
+        outline-color: #333;
+        outline-width: 2px;
+        outline-style :solid;
+        background-color: #1b1b1b;
+
+    }
+    
+    .celula-nome{
+        height:50%;
+        width:100%;
+        outline-color: #333;
+        outline-width: 2px;
+        outline-style :solid;
+        background-color: #1b1b1b;
+
+    }
+    
+    .celula-repeticoes{
+        height:50%;
+        width:100%;
+        outline-color: #333;
+        outline-width: 2px;
+        outline-style :solid;
+        background-color: #1b1b1b;
+
+    }
+
+    .column-ex{
+        height:100%;
+        width:25%;
+        outline-color: #333;
+        outline-width: 2px;
+        outline-style :solid;
+        background-color: #1b1b1b;
+        display:flex;
+        flex-direction:column;
+
+    }
+
+    input[type='submit']{
+        margin-top:20px;
+        width:150px;
+        height:40px;
+        background-color:#1c644b;
+        font-size:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:white;
+        border-radius:8px;
+        border:none;
+
+    }
+
+    .gerar_treino{
+        width:540px;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+    }
+
+    form{
+        width:180px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .botao-treino{
+        margin-top:20px;
+        width:150px;
+        height:40px;
+        background-color:#393939;
+        font-size:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:white;
+        border-radius:8px;
+        border:none;
+    }
+
+    .botao-treino-select{
+        margin-top:20px;
+        width:150px;
+        height:40px;
+        background-color:#f6f6f6;
+        font-size:15px;
+        text-transform:uppercase;
+        font-weight:bold;
+        color:rgb(29, 29, 29);
+        border-radius:8px;
+        border:none;
+        box-shadow: 0 0 0 2px #007bff;
+    }
+    
+    .tabela-dicas{
+        height:220px;
+        width:350px;
+        background-color:#CBD0F7;
+        box-shadow: 11px 5px 0 0px rgba(0, 38, 255, .2);
+        display:flex;
+        justify-content: center;
+        align-items:center;
+    }
+
+    .carousel-item {
+        position:absolute;
+        opacity: 0;
+        animation: display 64s infinite;
+        overflow: auto;
+        height:220px;
+        width:300px;
+        display:flex;
+        justify-content:center;
+        padding-top:50px;
+    }
+
+    .carousel-item:nth-child(2) {
+        animation-delay: 8s;
+    }
+    .carousel-item:nth-child(3) {
+        animation-delay: 16s;
+    }
+    .carousel-item:nth-child(4) {
+        animation-delay: 24s;
+    }
+    .carousel-item:nth-child(5) {
+        animation-delay: 32s;
+    }
+    .carousel-item:nth-child(6) {
+        animation-delay: 40s;
+    }
+    .carousel-item:nth-child(7) {
+        animation-delay: 48s;
+    }
+    .carousel-item:nth-child(8) {
+        animation-delay: 56s;
+    }
+    .carousel-item:nth-child(9) {
+        animation-delay: 64s;
+    }
+
+    @keyframes display {
+    0% {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    5% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    15% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    }
+
+    .wrapper {
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color);
+  min-height: 25vh;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.1rem, 0.5rem + 10vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+    .wrapper > div {
+    grid-area: 1/1/-1/-1;
+}
+
+
+    .top {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 35%, 0% 65%);
+}
+
+
+    .bottom {
+    clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+    color: #373e72;
+    background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+    background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: translateX(-0.02em);
+}
+
+
+    
+</style>
+
+
+<body>
+
+    <div class="page">
+        <div class="page-esquerda">
+            <div class='letra_treino'>
+                
+                {% if status == '1' %}
+                <button class="botao-treino-select" onclick="location.href='{% url 'home' %}?status=1'">Treino A</button>
+                {% else %}
+                <button class="botao-treino" onclick="location.href='{% url 'home' %}?status=1'">Treino A</button>
+                {% endif %}
+
+                {% if status == '2' %}
+                <button class="botao-treino-select" onclick="location.href='{% url 'home' %}?status=2'">Treino B</button>
+                {% else %}
+                <button class="botao-treino" onclick="location.href='{% url 'home' %}?status=2'">Treino B</button>
+                {% endif %}
+
+                {% if status == '3' %}
+                <button class="botao-treino-select" onclick="location.href='{% url 'home' %}?status=3'">Treino C</button>
+                {% else %}
+                <button class="botao-treino" onclick="location.href='{% url 'home' %}?status=3'">Treino C</button>
+                {% endif %}
+            </div>
+            <div class="treino">
+                {% if status == '1' %}
+                <div class="linha">
+                    {% for exercicio in treinoa_pag1 %}
+                    <div class="celula"> <img src='{{ exercicio.gif }}' width="125" height="125"> </div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinoa_pag1 %}
+                    <div class="column-ex">
+                    <div class="celula-nome">{{ exercicio.nome }} </div>
+                    <div class="celula-repeticoes">3x10 </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="linha">
+                    {% for exercicio in treinoa_pag2 %}
+                    <div class="celula"><img src='{{ exercicio.gif }}' width='125' height='125'></div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinoa_pag2 %}
+                    <div class="celula">{{ exercicio.nome }}</div>
+                    {% endfor %}
+                </div> 
+                {% endif %}
+
+
+                {% if status == '2' %}
+                <div class="linha">
+                    {% for exercicio in treinob_pag1 %}
+                    <div class="celula"> <img src='{{ exercicio.gif }}' width="125" height="125"> </div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinob_pag1 %}
+                    <div class="celula">{{ exercicio.nome }} </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="linha">
+                    {% for exercicio in treinob_pag2 %}
+                    <div class="celula"><img src='{{ exercicio.gif }}' width='125' height='125'></div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinob_pag2 %}
+                    <div class="celula">{{ exercicio.nome }}</div>
+                    {% endfor %}
+                </div> 
+                {% endif %}
+
+
+                {% if status == '3' %}
+                <div class="linha">
+                    {% for exercicio in treinoc_pag1 %}
+                    <div class="celula"> <img src='{{ exercicio.gif }}' width="125" height="125"> </div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinoc_pag1 %}
+                    <div class="celula">{{ exercicio.nome }} </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="linha">
+                    {% for exercicio in treinoc_pag2 %}
+                    <div class="celula"><img src='{{ exercicio.gif }}' width='125' height='125'></div>
+                    {% endfor %}
+                </div>
+
+                <div class="linha">
+                    {% for exercicio in treinoc_pag2 %}
+                    <div class="celula">{{ exercicio.nome }}</div>
+                    {% endfor %}
+                </div> 
+                {% endif %}
+            </div>
+            <div class="gerar_treino">
+            <form action="{% url 'gerar_treinoa' %}" method="GET">
+                <input type="Submit" value="Gerar Treino A"></button>
+            </form>
+
+            <form action="{% url 'gerar_treinob' %}" method="GET">
+                <input type="Submit" value="Gerar Treino B"></button>
+            </form>
+
+            <form action="{% url 'gerar_treinoc' %}" method="GET">
+                <input type="Submit" value="Gerar Treino C"></button>
+            </form>
+            </div>
+        </div>
+
+        <div class="page-direita">
+            <div class="page-direita-content">
+            <section class="wrapper">
+                <div class="top">Olá, {{ nome }}</div>
+                <div class="bottom" aria-hidden="true">Olá, {{ nome }}</div>
+            </section>
+            <div class="tabela-dicas">
+                {% for curiosidade in curiosidades %}
+                <div class="carousel-item">{{ curiosidade.curiosidade }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+</div>
+</body>
+</html>
