@@ -272,3 +272,6 @@ def gerar_treinoc(request):
     usuario = Usuario.objects.get(id=usuario_id)
     gerar_treino(usuario=usuario, parte_corpo='lower legs', alvo='abs', letra_treino='C', grupo_muscular1='Perna', grupo_muscular2='Abdomen')
     return redirect('/home/fitness_app/?status=3')
+
+def mainpage(request):
+    return render(request, 'Portfolio/index.html')

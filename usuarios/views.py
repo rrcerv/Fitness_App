@@ -12,7 +12,7 @@ import os
 def signup(request):
     status = request.GET.get('status')
     if request.session.get('usuario'):
-        return redirect('/home/fitness_app/')
+        return redirect('/fitness_app/')
     else:
         return render(request, 'signup.html', {'status': status} )
     
@@ -44,7 +44,7 @@ def validate_signup(request):
 def login(request):
     status=request.GET.get('status')
     if request.session.get('usuario'):
-        return redirect('/home/fitness_app/')
+        return redirect('/fitness_app/')
     else:
         return render(request, 'login.html', {'status': status})
 
@@ -57,7 +57,7 @@ def validate_login(request):
             current_user = Usuario.objects.get(email=email)
             if check_password_hash(current_user.senha, senha):
                 request.session['usuario'] = current_user.id
-                return redirect('/home/fitness_app/')
+                return redirect('/fitness_app/')
             else:
                 return redirect('/auth/login/?status=0')
             
