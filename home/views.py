@@ -274,4 +274,4 @@ def gerar_treinoc(request):
     return redirect('/home/fitness_app/?status=3')
 
 def mainpage(request):
-    return render(request, 'Portfolio/index.html')
+    return render(request, 'index.html')
